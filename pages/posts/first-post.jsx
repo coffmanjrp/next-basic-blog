@@ -1,14 +1,16 @@
+import Head from 'next/head';
 import Link from 'next/link';
+import Layout from '../../components/Layout';
 
 const FirstPost = () => {
   return (
     <>
-      <h1>First Post</h1>
-      <h2>
-        <Link href="/">
-          <a>Back to home</a>
-        </Link>
-      </h2>
+      <Head>
+        <title>First Post</title>
+      </Head>
+      <Layout>
+        <h1>First Post</h1>
+      </Layout>
     </>
   );
 };
