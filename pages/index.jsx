@@ -1,5 +1,7 @@
 import Head from 'next/head';
+import Link from 'next/link';
 import Layout, { name, siteTitle } from '../components/Layout';
+import Date from '../components/Date';
 import { getSortedPostsData } from '../lib/posts';
 import utilStyles from '../styles/utils.module.css';
 
@@ -17,10 +19,10 @@ export default function Home({ allPostsData }) {
           <br /> Fluent on English/Japanese. You can contact me on
           coffmanjrp@gmail.com
         </p>
-        <p>
+        {/* <p>
           (This is a sample website - you’ll be building a site like this on{' '}
           <a href="https://nextjs.org/learn">Next.js tutorial</a>.)
-        </p>
+        </p> */}
       </section>
 
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
@@ -29,11 +31,13 @@ export default function Home({ allPostsData }) {
           {allPostsData &&
             allPostsData.map(({ id, date, title }) => (
               <li className={utilStyles.listItem} key={id}>
-                {title}
+                <Link href="/posts/[id]" as={`/posts/${id}`}>
+                  {title}
+                </Link>
                 <br />
-                {id}
-                <br />
-                {date}
+                <small className={utilStyles.lightText}>
+                  <Date dateString={date} />
+                </small>
               </li>
             ))}
         </ul>
