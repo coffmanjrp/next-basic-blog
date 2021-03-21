@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { GetStaticProps, GetStaticPaths } from 'next';
 import Head from 'next/head';
 import Layout from '../../components/Layout';
 import { getAllPostIds, getPostData } from '../../lib/posts';
@@ -36,23 +37,23 @@ const Post = ({ postData }) => {
   );
 };
 
-export async function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async () => {
   const paths = await getAllPostIds();
 
   return {
     paths,
     fallback: false,
   };
-}
+};
 
-export async function getStaticProps({ params }) {
-  const postData = await getPostData(params.id);
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const postData = await getPostData(params.id as string);
 
   return {
     props: {
       postData,
     },
   };
-}
+};
 
 export default Post;

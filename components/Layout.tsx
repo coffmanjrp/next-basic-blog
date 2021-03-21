@@ -4,7 +4,12 @@ import Link from 'next/link';
 import utilStyles from '../styles/utils.module.css';
 import styles from '../styles/Layout.module.css';
 
-const Layout = ({ children, home }) => {
+type Props = {
+  children: React.ReactNode;
+  home?: boolean;
+};
+
+const Layout = ({ children, home }: Props) => {
   return (
     <>
       <div className={styles.container}>
